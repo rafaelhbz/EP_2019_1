@@ -62,6 +62,10 @@ def main():
         # Aluno A: substitua este comentário pelo código para imprimir 
         # o cenário atual.
 
+        print(cenario_atual['titulo'])
+        print('-'*len(cenario_atual['titulo']))
+        print(cenario_atual['descricao'])
+              
         opcoes = cenario_atual['opcoes']
         if len(opcoes) == 0:
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
