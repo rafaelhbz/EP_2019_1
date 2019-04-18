@@ -2,6 +2,8 @@
 ------------------------------------------------
 
 Alunos: 
-- Rafael Zanfolin, fulanos@insper.edu.br
-- Sicrano de Almeida, sicranoa1@insper.edu.br
+- Rafael Henrique Belini Zanfolin, rafaelhbz@insper.edu.br
+- João Pedro Faria Araujo, @insper.edu.brjoaopfa2@al.insper.edu.br
+
+
 
