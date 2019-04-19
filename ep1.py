@@ -81,12 +81,12 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-
-            # Aluno B: substitua este comentário e a linha abaixo pelo código
-            # para pedir a escolha do usuário.
             print(opcoes)
             escolha = input("Faça a sua escolha, jovem gafanhoto: ")
 
+            print (opcoes)
+            escolha = input("faça sua ecolha, jovem cafanhoto: ")
+            
             if escolha in opcoes:
                 nome_cenario_atual = escolha
                 if escolha == cenarios["alavanca"]:
