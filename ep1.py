@@ -20,15 +20,15 @@ def carregar_cenarios():
                 "inicio": "Tomar o elevador para o saguao de entrada",
                 "sala 101": "Ir para a sala 101",
                 "sala 102": "Ir para a sala 102",
-                "guardião do portão": "Falar com o guardião do portão"
+                "guardiao iluminado": "Falar com o guardiao iluminado"
             }
         },
-        "guardião do portão": {
+        "guardiao iluminado": {
             "titulo": "A passagem para o segundo andar",
             "descricao": "Voce foi pedir para subir ao segundo andar"
-                         "O guardião do portão pede 10 gold coins para subir ao segundo andar ",
+                         "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar ",
             "opcoes": {"primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
-                       "segudno andar": "Pagar o guardião do portão e subir para o segundo andar"}
+                       "segundo andar": "Pagar o guardião iluminado e subir ao segundo andar"}
         },
         "biblioteca": {
             "titulo": "Caverna da tranquilidade",
@@ -46,7 +46,20 @@ def carregar_cenarios():
         "alavanca" : {
                 "titulo":"Parabens, você teve coragem de encarar o seu destino",
                 "descricao":"Você obteve 10 gold coins",
-                "opcoes": {"biblioteca":"Voltar para a biblioteca"}}
+                "opcoes": {"biblioteca":"Voltar para a biblioteca"}
+        },
+        "segundo andar": {
+                "titulo": "O andar da infantilidade",
+                "descricao":"Você chegou ao segundo andar",
+                "opcoes":{"primeiro andar":"Voltar para o primeiro andar",
+                          "sala 201":"Ir para a sala 201",
+                          "sala 202":"Ir para a sala 202",
+                          "guardiao sombrio": "falar com o porteiro sombrio"}
+        },
+        "guardiao sombrio": {
+                "titulo": "A passagem para o terceiro andar",
+                "descricao":"Você foi pedir para subir ao terceiro andar"
+                            "O guardiao sombrio pede uma chave para subir ao terceiro andar"}
         }
     nome_cenario_atual = "inicio"
     return cenarios, nome_cenario_atual
@@ -54,6 +67,7 @@ def carregar_cenarios():
 
 def main():
     gold_pouch = 0
+    key = 0
     inventario = []
     print("Na hora do sufoco!")
     print("------------------")
@@ -89,12 +103,36 @@ def main():
             print("Faça a sua escolha, jovem gafanhoto: ")
             escolha = input()
         
+
+            print('-'*len(cenario_atual['titulo']))
+            
             if escolha in opcoes:
                 nome_cenario_atual = escolha
-                if escolha == cenarios["alavanca"]:
-                    gold_pouch = gold_pouch + 10
-                    print(gold_pouch)
-                    print("10 gold coins foram adicionados à sua gold pouch")
+                if escolha == "alavanca":
+                    if key > 0:
+                        print("\n Você já obteve essas recompensas \n ")
+                        print(opcoes)
+                        escolha = input("Você deve escolher voltar para a biblioteca! \n ")
+                        nome_cenario_atual = "biblioteca"
+                    elif key == 0:
+                        gold_pouch = gold_pouch + 10
+                        inventario.append(gold_pouch)
+                        key = key + 1
+                        inventario.append(key)
+                        print(" \n 10 gold coins foram adicionados à sua gold pouch e você recebeu uma chave \n ")
+                        print("Agora o seu inventário possui {0} gold(s) e {1} chave(s) \n ".format(gold_pouch,key))
+                elif escolha == "segundo andar":
+                    if key <= 0:
+                        print("\n Você infelizmente não tem a chave, volte e procure mais recursos \n")
+                        print(opcoes)
+                        escolha = input("Você deve escolher voltar para o primeiro andar!\n")
+                        nome_cenario_atual = "primeiro andar"
+                    else:
+                        key = key - 1
+                        inventario.append(key)
+                        print("Você entregou a chave para o guardiao iluminado, agora você tem {0} keys em seu inventario".format(key))
+                else:
+                    continue
             else:
                 print("Sua indecisão foi sua ruína!")
                 game_over = True
