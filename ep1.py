@@ -112,7 +112,16 @@ def carregar_cenarios():
                             "O professor permite você entregar o EP1",
                             "opcoes":{"EP1":"entregar o EP1",
                                       "segundo andar":"Voltar para o segundo andar"}
-        }
+        },
+        "sala 102":{
+                "titulo": "Hub de Teleporte",
+                "descricao": "aqui você pode voltar para qualquer luga sem demora!!!",
+                "opcoes":{"digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!"}
+        },
+        "guardiao sombrio": {
+                "titulo": "A passagem para o terceiro andar",
+                "descricao":"Você foi pedir para subir ao terceiro andar"
+                            "O guardiao sombrio pede uma chave para subir ao terceiro andar"}
         }
     nome_cenario_atual = "inicio"
     return cenarios, nome_cenario_atual
@@ -157,6 +166,22 @@ def main():
         else:
             print(opcoes)
             escolha = input("Faça a sua escolha, jovem gafanhoto: ")
+            if nome_cenario_atual == "sala 102":
+                print()
+                print("escolha seu caminho, jovem gafanhoto:") 
+                escolha = input()  
+                print('-'*len(cenario_atual['titulo']))
+                opcoes = cenarios.keys()
+            elif nome_cenario_atual != "sala 102":
+                print("suas opções: ")
+                print()
+                for k in opcoes:
+                    print("{0}: {1}".format(k, opcoes[k]))
+                    print()
+                print("Faça a sua escolha, jovem gafanhoto: ")
+                escolha = input()
+        
+
             print('-'*len(cenario_atual['titulo']))
             
             if escolha in opcoes:
