@@ -27,8 +27,9 @@ def carregar_cenarios():
                 "titulo":"O covil de monstros",
                 "descricao":"Você escuta gritos ensurdecedores, quem será que está gritando?",
                 "opcoes":{"primeiro andar":"voltar paraa o primeiro andar",
-                          "investigar o local":"verificar de onde veio o grito"}
-    },
+                          "investigar o local":"verificar de onde veio o grito"
+                    }
+        },
         "investigar o local":{
                 "titulo":"O grito está ainda mais alto",
                 "descricao": "Você está tenso e esperando o pior acontecer",
@@ -39,13 +40,13 @@ def carregar_cenarios():
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
                           "enfrentar":"Você inicia o combate"}
-    },
+        },
         "enfrentar inseto":{
                 "titulo":"Você encontrou um inseto",
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
                           "enfrentar":"Você inicia o combate"}
-    },
+        },
         "guardiao iluminado": {
             "titulo": "A passagem para o segundo andar",
             "descricao": "Voce foi pedir para subir ao segundo andar"
@@ -164,8 +165,6 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print(opcoes)
-            escolha = input("Faça a sua escolha, jovem gafanhoto: ")
             if nome_cenario_atual == "sala 102":
                 print()
                 print("escolha seu caminho, jovem gafanhoto:") 
@@ -209,27 +208,67 @@ def main():
                         print("Você entregou a chave para o guardiao iluminado, agora você tem {0} keys em seu inventario".format(key))
                 elif escolha == "investigar o local":
                     r2 = random.randint(1,2)
+                    cenario_atual = cenarios[nome_cenario_atual]
+                    print(cenario_atual['titulo'])
+                    print('-'*len(cenario_atual['titulo']))
+                    print(cenario_atual['descricao'])            
+                    opcoes = cenario_atual['opcoes']
+                    print()
                     if r2 == 1:
-                        opcoes = cenarios["enfrentar rato"]
-                        print(opcoes)
-                        escolha = input(" \n Ou enfrentar rato, ou sala 101 \n : ")
+                        cenario_atual = cenarios["enfrentar rato"]
+                        print(cenario_atual['titulo'])
+                        print('-'*len(cenario_atual['titulo']))
+                        print(cenario_atual['descricao'])            
+                        opcoes = cenario_atual['opcoes']
+                        print()
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
+                            print()
+                        escolha = input("o que vai fazer, jovem gafanhoto? ")
                         nome_cenario_atual = escolha
                     elif r2 == 2:
-                        opcoes = cenarios["enfrentar inseto"]
-                        print(opcoes)
-                        escolha = input(" \n Ou enfrentar inseto, ou sala 101 \n :")
+                        cenario_atual = cenarios["enfrentar inseto"]
+                        print(cenario_atual['titulo'])
+                        print('-'*len(cenario_atual['titulo']))
+                        print(cenario_atual['descricao'])            
+                        opcoes = cenario_atual['opcoes']
+                        print()
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
+                            print()
+                        escolha = input("o que vai fazer, jovem gafanhoto? ")
                         nome_cenario_atual = escolha
                 elif escolha == "investigar a sala":
+                    cenario_atual = cenarios[nome_cenario_atual]
+                    print(cenario_atual['titulo'])
+                    print('-'*len(cenario_atual['titulo']))
+                    print(cenario_atual['descricao'])            
+                    opcoes = cenario_atual['opcoes']
+                    print()
                     r2 = random.randint(1,2)
                     if r2 == 1:
-                        opcoes = cenarios["mimico"]
-                        print(opcoes)
-                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
+                        cenario_atual = cenarios["mimico"]
+                        print(cenario_atual['titulo'])
+                        print('-'*len(cenario_atual['titulo']))
+                        print(cenario_atual['descricao'])            
+                        opcoes = cenario_atual['opcoes']
+                        print()
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
+                            print()
+                        escolha = input("Você deve voltar para a sala 201!")
                         nome_cenario_atual = escolha
                     if r2 == 2:
-                        opcoes = cenarios["bau"]
-                        print(opcoes)
-                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
+                        cenario_atual = cenarios["bau"]
+                        print(cenario_atual['titulo'])
+                        print('-'*len(cenario_atual['titulo']))
+                        print(cenario_atual['descricao'])            
+                        opcoes = cenario_atual['opcoes']
+                        print()
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
+                            print()
+                        escolha = input("Você deve voltar para a sala 201!")
                         nome_cenario_atual = escolha
                         
                         
