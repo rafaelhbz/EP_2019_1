@@ -117,12 +117,8 @@ def carregar_cenarios():
         "sala 102":{
                 "titulo": "Hub de Teleporte",
                 "descricao": "aqui você pode voltar para qualquer luga sem demora!!!",
-                "opcoes":{"digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!"}
-        },
-        "guardiao sombrio": {
-                "titulo": "A passagem para o terceiro andar",
-                "descricao":"Você foi pedir para subir ao terceiro andar"
-                            "O guardiao sombrio pede uma chave para subir ao terceiro andar"}
+                "opcoes":{"digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!":"..."}
+        }
         }
     nome_cenario_atual = "inicio"
     return cenarios, nome_cenario_atual
@@ -165,19 +161,12 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            if nome_cenario_atual == "sala 102":
+            print("suas opções: ")
+            print()
+            for k in opcoes:
+                print("{0}: {1}".format(k, opcoes[k]))
                 print()
-                print("escolha seu caminho, jovem gafanhoto:") 
-                escolha = input()  
-                print('-'*len(cenario_atual['titulo']))
-                opcoes = cenarios.keys()
-            elif nome_cenario_atual != "sala 102":
-                print("suas opções: ")
-                print()
-                for k in opcoes:
-                    print("{0}: {1}".format(k, opcoes[k]))
-                    print()
-                escolha = input("Faça a sua escolha, jovem gafanhoto: ")
+            escolha = input("Faça a sua escolha, jovem gafanhoto: ")
         
 
             print('-'*len(cenario_atual['titulo']))
@@ -186,7 +175,8 @@ def main():
                 nome_cenario_atual = escolha
                 if escolha == "alavanca":
                     if key > 0:
-                        print("\n Você já obteve essas recompensas \n ")  
+                        print("\n Você já obteve essas recompensas \n ")
+                        print(opcoes)   
                         escolha = input("Você deve escolher voltar para a biblioteca! \n ")
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
@@ -270,10 +260,16 @@ def main():
                             print()
                         escolha = input("Você deve voltar para a sala 201!")
                         nome_cenario_atual = escolha
-                        
-                        
-                        
-                        
+                elif nome_cenario_atual == "sala 102":
+                    cenario_atual = cenarios["sala 102"]
+                    print(cenario_atual['titulo'])
+                    print('-'*len(cenario_atual['titulo']))
+                    print(cenario_atual['descricao'])            
+                    opcoes = cenarios.keys()
+                    print()
+                    escolha = input("escolha seu caminho, jovem gafanhoto: ")
+                    nome_cenario_atual = escolha
+   
                         
                 else:
                     continue
