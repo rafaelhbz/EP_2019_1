@@ -81,20 +81,20 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print(opcoes)
-            escolha = input("Faça a sua escolha, jovem gafanhoto: ")
-
-            print (opcoes)
-            escolha = input("faça sua ecolha, jovem cafanhoto: ")
-            
+            print("suas opções: ")
+            print()
+            for k in opcoes:
+                    print("{0}: {1}".format(k, opcoes[k]))
+                    print()
+            print("Faça a sua escolha, jovem gafanhoto: ")
+            escolha = input()
+        
             if escolha in opcoes:
                 nome_cenario_atual = escolha
                 if escolha == cenarios["alavanca"]:
                     gold_pouch = gold_pouch + 10
                     print(gold_pouch)
-                else:
-                    continue
-                print("10 gold coins foram adicionados à sua gold pouch")
+                    print("10 gold coins foram adicionados à sua gold pouch")
             else:
                 print("Sua indecisão foi sua ruína!")
                 game_over = True
