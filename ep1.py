@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Apr 20 15:00:29 2019
+
+@author: RafaelzZ
+"""
+
 # EP 2019-1: Escape Insper
 #
 # Alunos: 
@@ -27,30 +34,40 @@ def carregar_cenarios():
                 "titulo":"O covil de monstros",
                 "descricao":"Você escuta gritos ensurdecedores, quem será que está gritando?",
                 "opcoes":{"primeiro andar":"voltar paraa o primeiro andar",
-                          "investigar o local":"verificar de onde veio o grito"
-                    }
-        },
+                          "investigar o local":"verificar de onde veio o grito"}
+    },
         "investigar o local":{
                 "titulo":"O grito está ainda mais alto",
                 "descricao": "Você está tenso e esperando o pior acontecer",
                 "opcoes":{}
                 },
-        "enfrentar rato":{
+        "apareceu um rato":{
                 "titulo":"Você encontrou um rato",
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
-                          "enfrentar":"Você inicia o combate"}
-        },
-        "enfrentar inseto":{
+                          "enfrentar o rato":"Você inicia o combate"}
+    },
+        "apareceu um inseto":{
                 "titulo":"Você encontrou um inseto",
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
-                          "enfrentar":"Você inicia o combate"}
-        },
+                          "enfrentar o inseto":"Você inicia o combate"}
+    },
+        "enfrentar o rato":{"titulo":"Você decidiu enfrentar o rato",
+                            "descricao":"O combate iniciou",
+                            "opcoes":{"atarcar":"você ataca o rato",
+                                      "fugir":"você foge para a sala 201",
+                                      "usar pocao":"você usa uma pocao de cura"}
+    },
+        "enfrentar o inseto":{"titulo":"Você decidiu enfrentar o inseto",
+                              "descricao": "O combate iniciou",
+                              "opcoes":{"atacar":"você ataca o inseto",
+                                        "fugir":"você foge para a sala 201",
+                                        "usar pocao":"voce usa uma pocao de cura"}
+    },
         "guardiao iluminado": {
             "titulo": "A passagem para o segundo andar",
-            "descricao": "Voce foi pedir para subir ao segundo andar"
-                         "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar ",
+            "descricao":"O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar" ,
             "opcoes": {"primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
                        "segundo andar": "Pagar o guardião iluminado e subir ao segundo andar"}
         },
@@ -113,11 +130,6 @@ def carregar_cenarios():
                             "O professor permite você entregar o EP1",
                             "opcoes":{"EP1":"entregar o EP1",
                                       "segundo andar":"Voltar para o segundo andar"}
-        },
-        "sala 102":{
-                "titulo": "Hub de Teleporte",
-                "descricao": "aqui você pode voltar para qualquer luga sem demora!!!",
-                "opcoes":{"digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!":"..."}
         }
         }
     nome_cenario_atual = "inicio"
@@ -129,12 +141,21 @@ def main():
     r3 = random.randint(1,3)
     r4 = random.randint(2,4)
     r5 = random.randint(3,5)
-    character_hitpoints = 20
+    character_hitpoints = 30
     def_character = 0
+    weapon = "rapier"
     atk_character = r3
+    if weapon == "rapier":
+        atk_character = r5
+    
+    
+    
     gold_pouch = 0
     key = 0
+    pocao = 0
     inventario = []
+    
+    
     print("Na hora do sufoco!")
     print("------------------")
     print()
@@ -161,14 +182,9 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print("suas opções: ")
-            print()
-            for k in opcoes:
-                print("{0}: {1}".format(k, opcoes[k]))
-                print()
+            for k,v in opcoes.items():
+                print("{0}:{1}".format(k,v))
             escolha = input("Faça a sua escolha, jovem gafanhoto: ")
-        
-
             print('-'*len(cenario_atual['titulo']))
             
             if escolha in opcoes:
@@ -176,7 +192,8 @@ def main():
                 if escolha == "alavanca":
                     if key > 0:
                         print("\n Você já obteve essas recompensas \n ")
-                        print(opcoes)   
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
                         escolha = input("Você deve escolher voltar para a biblioteca! \n ")
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
@@ -189,7 +206,8 @@ def main():
                 elif escolha == "segundo andar":
                     if key <= 0:
                         print("\n Você infelizmente não tem a chave, volte e procure mais recursos \n")
-                        print(opcoes)
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
                         escolha = input("Você deve escolher voltar para o primeiro andar!\n")
                         nome_cenario_atual = "primeiro andar"
                     else:
@@ -198,78 +216,42 @@ def main():
                         print("Você entregou a chave para o guardiao iluminado, agora você tem {0} keys em seu inventario".format(key))
                 elif escolha == "investigar o local":
                     r2 = random.randint(1,2)
-                    cenario_atual = cenarios[nome_cenario_atual]
-                    print(cenario_atual['titulo'])
-                    print('-'*len(cenario_atual['titulo']))
-                    print(cenario_atual['descricao'])            
-                    opcoes = cenario_atual['opcoes']
-                    print()
                     if r2 == 1:
-                        cenario_atual = cenarios["enfrentar rato"]
-                        print(cenario_atual['titulo'])
-                        print('-'*len(cenario_atual['titulo']))
-                        print(cenario_atual['descricao'])            
-                        opcoes = cenario_atual['opcoes']
-                        print()
-                        for k in opcoes:
-                            print("{0}: {1}".format(k, opcoes[k]))
-                            print()
-                        escolha = input("o que vai fazer, jovem gafanhoto? ")
+                        opcoes = cenarios["apareceu um rato"]
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
+                        escolha = input(" \n Ou enfrentar rato, ou sala 101 \n : ")
                         nome_cenario_atual = escolha
                     elif r2 == 2:
-                        cenario_atual = cenarios["enfrentar inseto"]
-                        print(cenario_atual['titulo'])
-                        print('-'*len(cenario_atual['titulo']))
-                        print(cenario_atual['descricao'])            
-                        opcoes = cenario_atual['opcoes']
-                        print()
-                        for k in opcoes:
-                            print("{0}: {1}".format(k, opcoes[k]))
-                            print()
-                        escolha = input("o que vai fazer, jovem gafanhoto? ")
+                        opcoes = cenarios["apareceu um inseto"]
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
+                        escolha = input(" \n Ou enfrentar o inseto, ou sala 101 \n :")
                         nome_cenario_atual = escolha
                 elif escolha == "investigar a sala":
-                    cenario_atual = cenarios[nome_cenario_atual]
-                    print(cenario_atual['titulo'])
-                    print('-'*len(cenario_atual['titulo']))
-                    print(cenario_atual['descricao'])            
-                    opcoes = cenario_atual['opcoes']
-                    print()
                     r2 = random.randint(1,2)
                     if r2 == 1:
-                        cenario_atual = cenarios["mimico"]
-                        print(cenario_atual['titulo'])
-                        print('-'*len(cenario_atual['titulo']))
-                        print(cenario_atual['descricao'])            
-                        opcoes = cenario_atual['opcoes']
-                        print()
-                        for k in opcoes:
-                            print("{0}: {1}".format(k, opcoes[k]))
-                            print()
-                        escolha = input("Você deve voltar para a sala 201!")
+                        opcoes = cenarios["mimico"]
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
+                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
                         nome_cenario_atual = escolha
                     if r2 == 2:
-                        cenario_atual = cenarios["bau"]
-                        print(cenario_atual['titulo'])
-                        print('-'*len(cenario_atual['titulo']))
-                        print(cenario_atual['descricao'])            
-                        opcoes = cenario_atual['opcoes']
-                        print()
-                        for k in opcoes:
-                            print("{0}: {1}".format(k, opcoes[k]))
-                            print()
-                        escolha = input("Você deve voltar para a sala 201!")
+                        opcoes = cenarios["bau"]
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
+                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
                         nome_cenario_atual = escolha
-                elif nome_cenario_atual == "sala 102":
-                    cenario_atual = cenarios["sala 102"]
-                    print(cenario_atual['titulo'])
-                    print('-'*len(cenario_atual['titulo']))
-                    print(cenario_atual['descricao'])            
-                    opcoes = cenarios.keys()
-                    print()
-                    escolha = input("escolha seu caminho, jovem gafanhoto: ")
+                elif escolha == "sala 102":
+                    for i in cenarios.keys():
+                        print(i)
+                    escolha = input(" Você encontrou a sala teleporte, fale o nome de qulquer local e você será transportado para ele: ")
                     nome_cenario_atual = escolha
-   
+                    
+                        
+                        
+                        
+                        
                         
                 else:
                     continue
