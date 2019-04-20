@@ -56,6 +56,11 @@ def carregar_cenarios():
                           "sala 202":"Ir para a sala 202",
                           "guardiao sombrio": "falar com o porteiro sombrio"}
         },
+        "sala 102":{
+                "titulo": "Hub de Teleporte",
+                "descricao": "aqui você pode voltar para qualquer luga sem demora!!!",
+                "opcoes":{"digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!"}
+        }
         "guardiao sombrio": {
                 "titulo": "A passagem para o terceiro andar",
                 "descricao":"Você foi pedir para subir ao terceiro andar"
@@ -95,13 +100,20 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print("suas opções: ")
-            print()
-            for k in opcoes:
+            if nome_cenario_atual == "sala 102":
+                print()
+                print("escolha seu caminho, jovem gafanhoto:") 
+                escolha = input()  
+                print('-'*len(cenario_atual['titulo']))
+                opcoes = cenarios.keys()
+            elif nome_cenario_atual != "sala 102":
+                print("suas opções: ")
+                print()
+                for k in opcoes:
                     print("{0}: {1}".format(k, opcoes[k]))
                     print()
-            print("Faça a sua escolha, jovem gafanhoto: ")
-            escolha = input()
+                print("Faça a sua escolha, jovem gafanhoto: ")
+                escolha = input()
         
 
             print('-'*len(cenario_atual['titulo']))
