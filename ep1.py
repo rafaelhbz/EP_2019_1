@@ -164,8 +164,6 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print(opcoes)
-            escolha = input("Faça a sua escolha, jovem gafanhoto: ")
             if nome_cenario_atual == "sala 102":
                 print()
                 print("escolha seu caminho, jovem gafanhoto:") 
@@ -178,8 +176,7 @@ def main():
                 for k in opcoes:
                     print("{0}: {1}".format(k, opcoes[k]))
                     print()
-                print("Faça a sua escolha, jovem gafanhoto: ")
-                escolha = input()
+                escolha = input("Faça a sua escolha, jovem gafanhoto: ")
         
 
             print('-'*len(cenario_atual['titulo']))
@@ -189,7 +186,8 @@ def main():
                 if escolha == "alavanca":
                     if key > 0:
                         print("\n Você já obteve essas recompensas \n ")
-                        print(opcoes)   
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input("Você deve escolher voltar para a biblioteca! \n ")
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
@@ -202,7 +200,8 @@ def main():
                 elif escolha == "segundo andar":
                     if key <= 0:
                         print("\n Você infelizmente não tem a chave, volte e procure mais recursos \n")
-                        print(opcoes)
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input("Você deve escolher voltar para o primeiro andar!\n")
                         nome_cenario_atual = "primeiro andar"
                     else:
@@ -213,24 +212,28 @@ def main():
                     r2 = random.randint(1,2)
                     if r2 == 1:
                         opcoes = cenarios["enfrentar rato"]
-                        print(opcoes)
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input(" \n Ou enfrentar rato, ou sala 101 \n : ")
                         nome_cenario_atual = escolha
                     elif r2 == 2:
                         opcoes = cenarios["enfrentar inseto"]
-                        print(opcoes)
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input(" \n Ou enfrentar inseto, ou sala 101 \n :")
                         nome_cenario_atual = escolha
                 elif escolha == "investigar a sala":
                     r2 = random.randint(1,2)
                     if r2 == 1:
                         opcoes = cenarios["mimico"]
-                        print(opcoes)
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input(" \n Você deve voltar para a sala 201 \n :")
                         nome_cenario_atual = escolha
                     if r2 == 2:
                         opcoes = cenarios["bau"]
-                        print(opcoes)
+                        for k in opcoes:
+                            print("{0}: {1}".format(k, opcoes[k]))
                         escolha = input(" \n Você deve voltar para a sala 201 \n :")
                         nome_cenario_atual = escolha
                         
