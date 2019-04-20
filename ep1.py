@@ -9,7 +9,7 @@ def carregar_cenarios():
             "titulo": "Saguao do perigo",
             "descricao": "Voce esta no saguao de entrada do insper",
             "opcoes": {
-                "primeiro andar": "Tomar o elevador para segundo andar",
+                "primeiro andar": "Tomar o elevador para primeiro andar",
                 "biblioteca": "Ir para a biblioteca"
             }
         },
@@ -23,6 +23,29 @@ def carregar_cenarios():
                 "guardiao iluminado": "Falar com o guardiao iluminado"
             }
         },
+        "sala 101":{
+                "titulo":"O covil de monstros",
+                "descricao":"Você escuta gritos ensurdecedores, quem será que está gritando?",
+                "opcoes":{"primeiro andar":"voltar paraa o primeiro andar",
+                          "investigar o local":"verificar de onde veio o grito"}
+    },
+        "investigar o local":{
+                "titulo":"O grito está ainda mais alto",
+                "descricao": "Você está tenso e esperando o pior acontecer",
+                "opcoes":{}
+                },
+        "enfrentar rato":{
+                "titulo":"Você encontrou um rato",
+                "descricao":"Prepare-se para o combate",
+                "opcoes":{"sala 101":"Você volta para a sala 101",
+                          "enfrentar":"Você inicia o combate"}
+    },
+        "enfrentar inseto":{
+                "titulo":"Você encontrou um inseto",
+                "descricao":"Prepare-se para o combate",
+                "opcoes":{"sala 101":"Você volta para a sala 101",
+                          "enfrentar":"Você inicia o combate"}
+    },
         "guardiao iluminado": {
             "titulo": "A passagem para o segundo andar",
             "descricao": "Voce foi pedir para subir ao segundo andar"
@@ -54,18 +77,55 @@ def carregar_cenarios():
                 "opcoes":{"primeiro andar":"Voltar para o primeiro andar",
                           "sala 201":"Ir para a sala 201",
                           "sala 202":"Ir para a sala 202",
-                          "guardiao sombrio": "falar com o porteiro sombrio"}
+                          "professor": "falar com o porteiro sombrio"}
         },
-        "guardiao sombrio": {
-                "titulo": "A passagem para o terceiro andar",
-                "descricao":"Você foi pedir para subir ao terceiro andar"
-                            "O guardiao sombrio pede uma chave para subir ao terceiro andar"}
+        "sala 201":{
+                "titulo":"Cheiro de surpresa no ar",
+                "descricao":"A atmosfera desta sala é muito misteriosa",
+                "opcoes":{"segundo andar":"voltar para o segundo andar",
+                          "investigar a sala":"vasculhar o que tem nessa sala"}
+        },
+        "investigar a sala":{
+                "titulo":"Você avista um paralepipedo no meio do miasma",
+                "descricao":"O paralepipedo e na realidade um bau",
+                "opcoes":{}
+        },
+        "mimico":{
+                "titulo":"Oh nao, o bau era um mimico",
+                "descricao":"O mimico mordeu o seu braco direito",
+                "opcoes":{"sala 201":"Você volta para a sala 201"}
+        },
+        "bau":{
+                "titulo":"O paralelepipedo realmente era um bau",
+                "descricao":"Você abriu o bau e obteve recompensas",
+                "opcoes":{"sala 201":"Você volta para a sala 201",
+                          "abrir bau":"Você decide abrir o bau"}
+        },
+        "abrir bau":{
+                "titulo":"O bau tem um bilhete dentro",
+                "descricao":"Esta escrito 'Haha troxa!' no bilhete",
+                "opcoes":{"sala 201":"Voltar para a sala 201"}
+        },
+        "professor": {
+                "titulo": "A sua história chega ao final",
+                "descricao":"Você foi pedir permissão para entregar o EP1 atrasado"
+                            "O professor permite você entregar o EP1",
+                            "opcoes":{"EP1":"entregar o EP1",
+                                      "segundo andar":"Voltar para o segundo andar"}
+        }
         }
     nome_cenario_atual = "inicio"
     return cenarios, nome_cenario_atual
 
 
 def main():
+    import random
+    r3 = random.randint(1,3)
+    r4 = random.randint(2,4)
+    r5 = random.randint(3,5)
+    character_hitpoints = 20
+    def_character = 0
+    atk_character = r3
     gold_pouch = 0
     key = 0
     inventario = []
@@ -95,15 +155,8 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-            print("suas opções: ")
-            print()
-            for k in opcoes:
-                    print("{0}: {1}".format(k, opcoes[k]))
-                    print()
-            print("Faça a sua escolha, jovem gafanhoto: ")
-            escolha = input()
-        
-
+            print(opcoes)
+            escolha = input("Faça a sua escolha, jovem gafanhoto: ")
             print('-'*len(cenario_atual['titulo']))
             
             if escolha in opcoes:
@@ -111,7 +164,7 @@ def main():
                 if escolha == "alavanca":
                     if key > 0:
                         print("\n Você já obteve essas recompensas \n ")
-                        print(opcoes)
+                        print(opcoes)   
                         escolha = input("Você deve escolher voltar para a biblioteca! \n ")
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
@@ -131,6 +184,35 @@ def main():
                         key = key - 1
                         inventario.append(key)
                         print("Você entregou a chave para o guardiao iluminado, agora você tem {0} keys em seu inventario".format(key))
+                elif escolha == "investigar o local":
+                    r2 = random.randint(1,2)
+                    if r2 == 1:
+                        opcoes = cenarios["enfrentar rato"]
+                        print(opcoes)
+                        escolha = input(" \n Ou enfrentar rato, ou sala 101 \n : ")
+                        nome_cenario_atual = escolha
+                    elif r2 == 2:
+                        opcoes = cenarios["enfrentar inseto"]
+                        print(opcoes)
+                        escolha = input(" \n Ou enfrentar inseto, ou sala 101 \n :")
+                        nome_cenario_atual = escolha
+                elif escolha == "investigar a sala":
+                    r2 = random.randint(1,2)
+                    if r2 == 1:
+                        opcoes = cenarios["mimico"]
+                        print(opcoes)
+                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
+                        nome_cenario_atual = escolha
+                    if r2 == 2:
+                        opcoes = cenarios["bau"]
+                        print(opcoes)
+                        escolha = input(" \n Você deve voltar para a sala 201 \n :")
+                        nome_cenario_atual = escolha
+                        
+                        
+                        
+                        
+                        
                 else:
                     continue
             else:
