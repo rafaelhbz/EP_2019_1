@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Apr 20 17:15:47 2019
+
+@author: RafaelzZ
+"""
+
 # EP 2019-1: Escape Insper
 #
 # Alunos: 
@@ -35,24 +42,34 @@ def carregar_cenarios():
                 "descricao": "Você está tenso e esperando o pior acontecer",
                 "opcoes":{}
                 },
-        "enfrentar rato":{
+        "apareceu um rato":{
                 "titulo":"Você encontrou um rato",
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
-                          "enfrentar":"Você inicia o combate"}
+                          "enfrentar o rato":"Você inicia o combate"}
         },
-        "enfrentar inseto":{
+        "apareceu um inseto":{
                 "titulo":"Você encontrou um inseto",
                 "descricao":"Prepare-se para o combate",
                 "opcoes":{"sala 101":"Você volta para a sala 101",
-                          "enfrentar":"Você inicia o combate"}
+                          "enfrentar o inseto":"Você inicia o combate"}
         },
-        "guardiao iluminado": {
-            "titulo": "A passagem para o segundo andar",
-            "descricao": "Voce foi pedir para subir ao segundo andar"
-                         "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar ",
-            "opcoes": {"primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
-                       "segundo andar": "Pagar o guardião iluminado e subir ao segundo andar"}
+        "enfrentar o rato":{"titulo":"Você decidiu enfrentar o rato",
+                            "descricao":"O combate iniciou",
+                            "opcoes":{"atarcar":"você ataca o rato",
+                                      "fugir":"você foge para a sala 201",
+                                      "usar pocao":"você usa uma pocao de cura"}
+        },
+        "enfrentar o inseto":{"titulo":"Você decidiu enfrentar o inseto",
+                              "descricao": "O combate iniciou",
+                              "opcoes":{"atacar":"você ataca o inseto",
+                                        "fugir":"você foge para a sala 201",
+                                        "usar pocao":"voce usa uma pocao de cura"}
+        },
+        "guardiao iluminado": {"titulo": "A passagem para o segundo andar",
+                               "descricao": "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar" ,
+                               "opcoes": {"primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
+                                          "segundo andar": "Pagar o guardião iluminado e subir ao segundo andar"}
         },
         "biblioteca": {
             "titulo": "Caverna da tranquilidade",
@@ -176,7 +193,8 @@ def main():
                 if escolha == "alavanca":
                     if key > 0:
                         print("\n Você já obteve essas recompensas \n ")
-                        print(opcoes)   
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
                         escolha = input("Você deve escolher voltar para a biblioteca! \n ")
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
@@ -189,7 +207,8 @@ def main():
                 elif escolha == "segundo andar":
                     if key <= 0:
                         print("\n Você infelizmente não tem a chave, volte e procure mais recursos \n")
-                        print(opcoes)
+                        for k,v in opcoes.items():
+                            print("{0}:{1}".format(k,v))
                         escolha = input("Você deve escolher voltar para o primeiro andar!\n")
                         nome_cenario_atual = "primeiro andar"
                     else:
@@ -205,7 +224,7 @@ def main():
                     opcoes = cenario_atual['opcoes']
                     print()
                     if r2 == 1:
-                        cenario_atual = cenarios["enfrentar rato"]
+                        cenario_atual = cenarios["apareceu um rato"]
                         print(cenario_atual['titulo'])
                         print('-'*len(cenario_atual['titulo']))
                         print(cenario_atual['descricao'])            
@@ -217,7 +236,7 @@ def main():
                         escolha = input("o que vai fazer, jovem gafanhoto? ")
                         nome_cenario_atual = escolha
                     elif r2 == 2:
-                        cenario_atual = cenarios["enfrentar inseto"]
+                        cenario_atual = cenarios["apareceu um inseto"]
                         print(cenario_atual['titulo'])
                         print('-'*len(cenario_atual['titulo']))
                         print(cenario_atual['descricao'])            
