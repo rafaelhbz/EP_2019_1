@@ -2,8 +2,8 @@
 ------------------------------------------------
 
 Alunos: 
-- Rafael Henrique Belini Zanfolin, rafaelhbz@insper.edu.br
-- João Pedro Faria Araujo, @insper.edu.brjoaopfa2@al.insper.edu.br
+- Rafael Henrique Belini Zanfolin, rafaelhbz@insper.edu.br(e-mail insper), rafaelrhbz@gmail.com (e-mail utilizado no EP1)
+- João Pedro Faria Araujo, joaopfa2@al.insper.edu.br
 
 
 
