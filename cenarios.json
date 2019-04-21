@@ -1,0 +1,179 @@
+﻿{
+        "inicio": {
+            "titulo": "Saguao do perigo",
+            "descricao": "Voce esta no saguao de entrada do insper",
+            "opcoes": {
+                "primeiro andar": "Tomar o elevador para primeiro andar",
+                "biblioteca": "Ir para a biblioteca",
+                "usar pocao": "Você usa uma pocao"
+            }
+        },
+        "primeiro andar": {
+            "titulo": "O misterioso andar",
+            "descricao": "Voce chegou ao primeiro andar",
+            "opcoes": {
+                "inicio": "Tomar o elevador para o saguao de entrada",
+                "sala 101": "Ir para a sala 101",
+                "sala 102": "Ir para a sala 102",
+                "guardiao iluminado": "Falar com o guardiao iluminado"
+                }   
+        },
+        "sala 101":{
+            "titulo":"O covil de monstros",
+            "descricao":"Você escuta gritos ensurdecedores, quem será que está gritando?",
+            "opcoes":{
+                "primeiro andar":"voltar paraa o primeiro andar",
+                "investigar o local":"verificar de onde veio o grito"
+                }
+        },
+        "investigar o local":{
+            "titulo":"O grito está ainda mais alto",
+            "descricao": "Você está tenso e esperando o pior acontecer",
+            "opcoes":{
+                }
+        },
+        "apareceu um rato":{
+            "titulo":"Você encontrou um rato",
+            "descricao":"Prepare-se para o combate",
+            "opcoes":{
+                "sala 101":"Você volta para a sala 101",
+                "enfrentar o rato":"Você inicia o combate"
+                }
+        },
+        "apareceu um inseto":{
+            "titulo":"Você encontrou um inseto",
+            "descricao":"Prepare-se para o combate",
+            "opcoes":{
+                "sala 101":"Você volta para a sala 101",
+                "enfrentar o inseto":"Você inicia o combate"
+                }
+        },
+        "enfrentar o rato":{
+            "titulo":"Você decidiu enfrentar o rato",
+            "descricao":"O combate iniciou",
+            "opcoes":{
+                "batalhar":"você ataca o rato",
+                "sala 101":"você foge para a sala 101"
+                }
+        },
+        "enfrentar o inseto":{
+            "titulo":"Você decidiu enfrentar o inseto",
+            "descricao": "O combate iniciou",
+            "opcoes":{
+                "atacar":"você ataca o inseto",
+                "sala 101":"você foge para a sala 101"
+                }
+        },
+        "batalhar":{
+            "titulo":"Você batalhou contra o monstro",
+            "descricao":"Parabéns, você conseguiu matar o monstro, agora volte para a sala 101",
+            "opcoes":{
+                "sala 101":"voltar para a sala 101"
+                }
+        },
+        "lutar":{
+            "titulo":"Você lutou contra o monstro",
+            "descricao":"Parabéns, você conseguiu matar o monstro, agora volte para a sala 101",
+            "opcoes":{
+                "sala 101":"voltar para a sala 101"
+                }
+        },
+        "guardiao iluminado": {
+            "titulo": "A passagem para o segundo andar",
+            "descricao": "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar",
+            "opcoes":{
+                "primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
+                "segundo andar": "Mostrar a sua chave de acesso para o guardiao iluminado"
+                }
+        },
+        "biblioteca": {
+            "titulo": "Caverna da tranquilidade",
+            "descricao": "Voce esta na biblioteca",
+            "opcoes":{
+                "inicio": "Voltar para o saguao de entrada",
+                "aquario 11": "Entrar para o aquario 11"
+                }
+        },
+        "aquario 11": {
+            "titulo":"Santuario das indecisoes",
+            "descricao": "Voce esta no Santuario das decisoes",
+            "opcoes":{
+                "alavanca": "Puchar a alavanca",
+                "biblioteca": "Voltar para a biblioteca"
+                }
+        },
+        "alavanca" : {
+            "titulo":"Parabens, você teve coragem de encarar o seu destino",
+            "descricao":"Você obteve 10 gold coins, 1 key , 1 pocao e 1 nova weapon",
+            "opcoes":{
+                "biblioteca":"Voltar para a biblioteca"
+                }
+        },
+        "segundo andar": {
+            "titulo": "O andar da infantilidade",
+            "descricao":"Você chegou ao segundo andar",
+            "opcoes":{
+                "primeiro andar":"Voltar para o primeiro andar",
+                "sala 201":"Ir para a sala 201",
+                "sala 202":"Ir para a sala 202",
+                "professor": "falar com o porteiro sombrio"
+                }
+        },
+        "sala 201":{
+            "titulo":"Cheiro de surpresa no ar",
+            "descricao":"A atmosfera desta sala é muito misteriosa",
+            "opcoes":{
+                "segundo andar":"voltar para o segundo andar",
+                "investigar a sala":"vasculhar o que tem nessa sala"
+                }
+        },
+        "sala 202":{
+            "titulo":"Sala da regeneração",
+            "descricao":"Você encontrou a sala de recuperacao",
+            "opcoes":{
+                "segundo andar":"Você volta para o segundo andar"
+                }
+        },
+        "investigar a sala":{
+            "titulo":"Você avista um paralepipedo no meio do miasma",
+            "descricao":"O paralepipedo e na realidade um bau",
+            "opcoes":{
+                }
+        },
+        "mimico":{
+            "titulo":"Oh nao, o bau era um mimico",
+            "descricao":"O mimico mordeu o seu braco direito",
+            "opcoes":{
+                "sala 201":"Você volta para a sala 201"
+                }
+        },
+        "abrir o bau":{
+            "titulo":"O bau parece estar cheio",
+            "descricao":"Você abriu o bau e obteve recompensas",
+            "opcoes":{
+                "sala 201":"Você volta para a sala 201"
+                }
+        },
+        "professor": {
+            "titulo": "A sua história chega ao final",
+            "descricao":"Você foi pedir permissão para entregar o EP1 atrasado. O professor permite você entregar o EP1",
+            "opcoes":{
+                "EP1":"entregar o EP1",
+                "segundo andar":"Voltar para o segundo andar"
+                }
+        },
+        "sala 102":{
+            "titulo": "Hub de Teleporte",
+            "descricao": "aqui você pode voltar para qualquer luga sem demora!!!",
+            "opcoes":{
+                "digite o nome do lugar que quer ir, CUIDADO: escreva errado e morrerá!":"..."
+                }
+        },
+        "usar pocao":{
+            "titulo":"Voce tentou usar uma pocao",
+            "descricao" : "Se você tinha uma pocao, ela foi utilizada. Se você não tem uma pocao, nada ocorreu",
+            "opcoes" :{
+                "inicio":"você volta para o inicio"
+                }
+        }
+}
