@@ -8,8 +8,14 @@ def carregar_cenarios():
             "descricao": "Voce esta no saguao de entrada do insper",
             "opcoes": {
                 "primeiro andar": "Tomar o elevador para primeiro andar",
-                "biblioteca": "Ir para a biblioteca"
+                "biblioteca": "Ir para a biblioteca",
+                "usar pocao": "Você usa uma pocao"
             }
+        },
+        "usar pocao":{"titulo":"Voce tentou usar uma pocao",
+                      "descricao" : "Se você tinha uma pocao, ela foi utilizada. Se você não tem uma pocao, nada ocorreu",
+                      "opcoes" : {"inicio":"você volta para o inicio"
+                                  }
         },
         "primeiro andar": {
             "titulo": "O misterioso andar",
@@ -48,24 +54,27 @@ def carregar_cenarios():
         "enfrentar o rato":{"titulo":"Você decidiu enfrentar o rato",
                             "descricao":"O combate iniciou",
                             "opcoes":{"batalhar":"você ataca o rato",
-                                      "sala 101":"você foge para a sala 101",
-                                      "usar pocao":"você usa uma pocao de cura"}
+                                      "sala 101":"você foge para a sala 101"}
         },
         "enfrentar o inseto":{"titulo":"Você decidiu enfrentar o inseto",
                               "descricao": "O combate iniciou",
-                              "opcoes":{"atacar":"você ataca o inseto",
-                                        "sala 101":"você foge para a sala 101",
-                                        "usar pocao":"voce usa uma pocao de cura"}
+                              "opcoes":{"lutar":"você ataca o inseto",
+                                        "sala 101":"você foge para a sala 101"}
         },
         "batalhar":{"titulo":"Você batalhou contra o monstro",
                   "descricao":"Parabéns, você conseguiu matar o monstro, agora volte para a sala 101",
                   "opcoes":{"sala 101":"voltar para a sala 101"
                           }
         },
+        "lutar":{"titulo":"Você lutou contra o monstro",
+                 "descricao":"Parabéns, você conseguiu matar o monstro, agora volte para a sala 101",
+                 "opcoes":{"sala 101":"voltar para a sala 101"
+                           }
+        },
         "guardiao iluminado": {"titulo": "A passagem para o segundo andar",
                                "descricao": "O guardiao iluminado pede uma chave para você ter direito a subir ao segundo andar" ,
                                "opcoes": {"primeiro andar" : "Voltar para o primeiro andar e buscar mais recursos",
-                                          "segundo andar": "Pagar o guardião iluminado e subir ao segundo andar"}
+                                          "segundo andar": "Mostrar a sua chave de acesso para o guardiao iluminado"}
         },
         "biblioteca": {
             "titulo": "Caverna da tranquilidade",
@@ -82,7 +91,7 @@ def carregar_cenarios():
         },
         "alavanca" : {
                 "titulo":"Parabens, você teve coragem de encarar o seu destino",
-                "descricao":"Você obteve 10 gold coins",
+                "descricao":"Você obteve 10 gold coins, 1 key , 1 pocao e 1 nova weapon",
                 "opcoes": {"biblioteca":"Voltar para a biblioteca"}
         },
         "segundo andar": {
@@ -114,15 +123,9 @@ def carregar_cenarios():
                 "descricao":"O mimico mordeu o seu braco direito",
                 "opcoes":{"sala 201":"Você volta para a sala 201"}
         },
-        "bau":{
-                "titulo":"O paralelepipedo realmente era um bau",
+        "abrir o bau":{
+                "titulo":"O bau parece estar cheio",
                 "descricao":"Você abriu o bau e obteve recompensas",
-                "opcoes":{"sala 201":"Você volta para a sala 201",
-                          "abrir bau":"Você decide abrir o bau"}
-        },
-        "abrir bau":{
-                "titulo":"O bau tem um bilhete dentro",
-                "descricao":"Esta escrito 'Haha troxa!' no bilhete",
                 "opcoes":{"sala 201":"Voltar para a sala 201"}
         },
         "professor": {
@@ -144,9 +147,6 @@ def carregar_cenarios():
 
 def main():
     import random
-    r3 = random.randint(1,3)
-    r4 = random.randint(2,4)
-    r5 = random.randint(3,5)
     
     hp_character = 30
     def_character = 0
@@ -159,6 +159,15 @@ def main():
     hp_inseto = 4
     def_inseto = 1
     atk_inseto = 3
+    
+    weapon = 0
+    if weapon == 0:
+        atk_character = 3
+    elif weapon == 1:
+        atk_character = 5
+    elif weapon == 2:
+        atk_character = 7
+    
     
     pocao = 0
     gold_pouch = 0
@@ -215,16 +224,36 @@ def main():
                         inventario.append(gold_pouch)
                         key = key + 1
                         inventario.append(key)
-                        print(" \n 10 gold coins foram adicionados à sua gold pouch e você recebeu uma chave \n ")
-                        print("Agora o seu inventário possui {0} gold(s) e {1} chave(s) \n ".format(gold_pouch,key))
+                        pocao = pocao + 1
+                        inventario.append(pocao)
+                        atk_character = 5
+                        print(" \n 10 gold coins foram adicionados à sua gold pouch, você recebeu uma chave, uma pocao e uma dagger \n ")
+                        print("Agora o seu inventário possui {0} gold(s) , {1} chave(s) e {2} poco(es) e uma dagger\n ".format(gold_pouch,key,pocao,weapon))
+                        print("O seu atk damage atual é {0}".format(atk_character))
+                elif escolha == "usar pocao":
+                    if pocao > 0:
+                        if hp_character < 25:
+                            pocao = pocao - 1
+                            hp_character = hp_character + 5
+                            print("Sua vida atual e {0} e voce tem {1} pocoes".format(hp_character,pocao))
+                        else:
+                            print("A sua vida atual é maior que 25, então você desperdiçou uma pocao")
+                            pocao = pocao - 1
+                            print("Sua vida atual e {0} e voce tem {1} poco(es)".format(hp_character,pocao))
+                    else:
+                        print("Você não tem pocoes")
+                        
                 elif escolha == "sala 202":
                     print(cenario_atual['titulo'])
                     print(cenario_atual['descricao'])
                     print('-'*len(cenario_atual['titulo']))
-                    if hp_character < 25:
+                    if hp_character <= 25:
                         hp_character = hp_character + 5
                         print("Você recuperou 5 de vida")
-                        print("A sua vida atual é {0}".format(hit_points))
+                        print("A sua vida atual é {0}".format(hp_character))
+                    else:
+                        print("A sua vida atual é {0}:".format(hp_character))
+                        print("Como você tem 26 ou mais pontos de vida, a sua vida continua a mesma")
                     opcoes = cenario_atual['opcoes']
                     print()
                 elif escolha == "segundo andar":
@@ -235,9 +264,7 @@ def main():
                         escolha = input("Você deve escolher voltar para o primeiro andar!\n")
                         nome_cenario_atual = "primeiro andar"
                     else:
-                        key = key - 1
-                        inventario.append(key)
-                        print("Você entregou a chave para o guardiao iluminado, agora você tem {0} keys em seu inventario".format(key))
+                        print("Você possui a chave de acesso para o segundo andar andar")
                 elif escolha == "investigar o local":
                     r2 = random.randint(1,2)
                     cenario_atual = cenarios[nome_cenario_atual]
@@ -293,13 +320,16 @@ def main():
                         escolha = input("Você deve voltar para a sala 201!")
                         nome_cenario_atual = escolha
                     if r2 == 2:
-                        cenario_atual = cenarios["bau"]
+                        cenario_atual = cenarios["abrir o bau"]
+                        print("Parabens, você ganhou 5 gold coins")
+                        gold_pouch = gold_pouch + 5
+                        print("Agora você tem {0} gold coins em seu inventario".format(gold_pouch))
                         print(cenario_atual['titulo'])
                         print(cenario_atual['descricao'])
                         print('-'*len(cenario_atual['titulo']))
-                        escolha = input("Faça a sua escolha, jovem gafanhoto!")
-                        
                         opcoes = cenario_atual['opcoes']
+                        print(opcoes)
+                        escolha = input("Faça a sua escolha, jovem gafanhoto!")
                         print()
                         for k in opcoes:
                             print("{0}: {1}".format(k, opcoes[k]))
@@ -321,6 +351,27 @@ def main():
                     print(cenario_atual['descricao'])            
                     opcoes = cenario_atual['opcoes']
                     print()
+                    if hp_inseto <= 0:
+                        print("Parabens, você ganhou 5 gold coins e uma pocao")
+                        gold_pouch = gold_pouch + 5
+                        print("Você tem {0} gold coins em seu invetario".format(gold_pouch))
+                elif escolha == "lutar":
+                    index = 0
+                    while hp_inseto > 0:
+                        if escolha == "lutar":
+                            hp_inseto = hp_inseto - (atk_character - def_inseto)
+                            hp_character = hp_character - (atk_inseto - def_character)
+                            print("A sua vida atual é: {0}".format(hp_character))
+                            print("A vida atual do inseto é {0}".format(hp_inseto))
+                        index = index + 1
+                    if hp_inseto <= 0:
+                        print("Parabens você ganhou 5 gold coins")
+                        gold_pouch = gold_pouch + 5
+                        print("Você tem {0} gold coins em seu inventario".format(gold_pouch))
+                        index = index + 1            
+                elif escolha == "sala 101":
+                    hp_inseto = 5
+                    cenario_atual = cenarios["sala 101"]
                 elif escolha == "batalhar":
                     contador = 0
                     while hp_rato > 0:
@@ -331,7 +382,9 @@ def main():
                             print("A vida atual do rato é {0}".format(hp_rato))
                         contador = contador + 1
                     if hp_rato <= 0:
-                        print("Parabens, você ganhou 5 gold coins")
+                        print("Parabens, você ganhou 5 gold coins e uma rapier")
+                        atk_character = 7
+                        print("O seu atk damage atual é {0}".format(atk_character))
                         gold_pouch = gold_pouch + 5
                         print("Você tem {0} gold coins em seu inventario".format(gold_pouch))
                         contador = contador + 1
@@ -351,6 +404,8 @@ def main():
                         hp_rato = 5
                         cenario_atual = cenarios["sala 101"]
                     hp_rato = 5
+                elif escolha == "EP1":
+                    game_over = True
                 else:
                     continue
             else:
