@@ -1,9 +1,18 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr 22 16:57:49 2019
+
+@author: RafaelzZ
+"""
+
 # Alunos: 
 # - aluno A: Rafael Henrique Belini Zanfolin, rafaelhbz@insper.edu.br
 # - aluno B: João Pedro Farias Araujo, joaopfa2@al.insper.edu.br
 
 import json
 import random
+
+invetario = []
 
 with open('cenarios.json', 'r', encoding="utf-8-sig") as cenarios_file:
     cenarios_str = cenarios_file.read()
@@ -43,8 +52,7 @@ def main():
     pocao = 0
     gold_pouch = 0
     key = 0
-    inventario = []
-    
+    inventario = []    
     print("Na hora do sufoco!")
     print("------------------")
     print()
@@ -275,6 +283,9 @@ def main():
                         hp_rato = 5
                         cenario_atual = cenarios["sala 101"]
                     hp_rato = 5
+                elif escolha == "inventario":
+                    print(inventario)
+                    print("Você tem {0} gold coins,{1} pocoes e {2} chave de acesso em seu inventario".format(gold_pouch,pocao,key))
                 elif escolha == "EP1":
                     r3 = random.randint(1,3)
                     if gold_pouch >= 40:

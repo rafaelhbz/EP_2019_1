@@ -5,7 +5,8 @@
             "opcoes": {
                 "primeiro andar": "Tomar o elevador para primeiro andar",
                 "biblioteca": "Ir para a biblioteca",
-                "usar pocao": "Você usa uma pocao"
+                "usar pocao": "Você usa uma pocao",
+                "inventario":"Você abre o seu inventario"
             }
         },
         "primeiro andar": {
@@ -175,5 +176,10 @@
             "opcoes" :{
                 "inicio":"você volta para o inicio"
                 }
-        }
+        },
+        "inventario":{
+                "titulo":"Você abriu o seu inventario",
+                "descricao":"Aqui estão todos os itens que você obteve até agora",
+                "opcoes":{
+                        "inicio":"Você volta para o inicio"}}
 }
