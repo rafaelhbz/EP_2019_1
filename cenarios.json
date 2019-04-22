@@ -60,7 +60,7 @@
             "titulo":"Você decidiu enfrentar o inseto",
             "descricao": "O combate iniciou",
             "opcoes":{
-                "atacar":"você ataca o inseto",
+                "lutar":"você ataca o inseto",
                 "sala 101":"você foge para a sala 101"
                 }
         },

@@ -281,12 +281,13 @@ def main():
                         if r3 == 1:
                             gold_pouch = gold_pouch - 40
                             print("Agora você tem {0} gold coins".format(gold_pouch))
-                            print("Você subornou o professor, mas a Cavalaria de Étrica descobriu e te matou")
+                            print("Você subornou o professor, mas a Cavalaria de Ética descobriu e te matou")
                             game_over = True
                         elif r3 !=  1:
                             gold_pouch = gold_pouch - gold_pouch
                             print("O professor te apunhalou e roubou todo o seu dinheiro")
-                            print("Agora você esta pobre, e tem {0} gold coins".format(gold_pouch))
+                            print("Agora você esta morto, pobre e tem {0} gold coins".format(gold_pouch))
+                            game_over = True
                     else:
                         print("Você tinha pouquissimo dinheiro (menos de 40 coins), por isso foi morto!")
                         game_over = True
