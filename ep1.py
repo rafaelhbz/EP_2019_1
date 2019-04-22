@@ -15,6 +15,8 @@ def carregar_cenarios():
 
 
 def main():
+    
+    import random
 
     
     hp_character = 30
@@ -274,8 +276,20 @@ def main():
                         cenario_atual = cenarios["sala 101"]
                     hp_rato = 5
                 elif escolha == "EP1":
-                    print("Você tentou subornar o professor, mas foi pego pela comissão de ética!")
-                    game_over = True
+                    r3 = random.randint(1,3)
+                    if gold_pouch >= 40:
+                        if r3 == 1:
+                            gold_pouch = gold_pouch - 40
+                            print("Agora você tem {0} gold coins".format(gold_pouch))
+                            print("Você subornou o professor, mas a Cavalaria de Étrica descobriu e te matou")
+                            game_over = True
+                        elif r3 !=  1:
+                            gold_pouch = gold_pouch - gold_pouch
+                            print("O professor te apunhalou e roubou todo o seu dinheiro")
+                            print("Agora você esta pobre, e tem {0} gold coins".format(gold_pouch))
+                    else:
+                        print("Você tinha pouquissimo dinheiro (menos de 40 coins), por isso foi morto!")
+                        game_over = True
                 else:
                     continue
             else:
