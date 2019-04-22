@@ -274,6 +274,7 @@ def main():
                         cenario_atual = cenarios["sala 101"]
                     hp_rato = 5
                 elif escolha == "EP1":
+                    print("Você tentou subornar o professor, mas foi pego pela comissão de ética!")
                     game_over = True
                 else:
                     continue
