@@ -1,23 +1,31 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 22 16:57:49 2019
-
-@author: RafaelzZ
-"""
-
 # Alunos: 
 # - aluno A: Rafael Henrique Belini Zanfolin, rafaelhbz@insper.edu.br
 # - aluno B: João Pedro Farias Araujo, joaopfa2@al.insper.edu.br
 
+
 import json
 import random
 
-invetario = []
+hp_character = 30
+atk_character = 2
+def_character = 0
 
+if hp_character <= 0:
+    game_over = True
+
+# o dicionário inventário está sendo modificado, porém o ataque não muda qunado a rapier está equipada
+# e nem a defesa muda quando a studded armor está equipada
+inventario = {"weapon":"nothing",
+             "shield":"nothing",
+             "armor":"nothing"}
+
+    
 with open('cenarios.json', 'r', encoding="utf-8-sig") as cenarios_file:
     cenarios_str = cenarios_file.read()
     cenarios_dict = json.loads(cenarios_str)
-
+  
+    
+    
 def carregar_cenarios():
     nome_cenario_atual = "inicio"
     return cenarios_dict, nome_cenario_atual
@@ -26,11 +34,35 @@ def carregar_cenarios():
 def main():
     
     import random
+    
+    inventario = {"weapon":"nothing",
+             "shield":"nothing",
+             "armor":"nothing"}
+    
+    if inventario["weapon"] == "nothing":
+        atk_character = 2
+    elif inventario["weapon"] == "dagger":
+        atk_character = 3
+    if inventario["weapon"] == "rapier":
+        atk_character = 4
+
+    if inventario["shield"] == "nothing":
+        def_character = 0
+    elif inventario["shield"] == "wooden shield":
+        def_character = def_character + 1
+
+    if inventario["armor"] == "nothing":
+        def_character = def_character
+    elif inventario["armor"] == "studded armor":
+        def_character = def_character + 1
 
     
     hp_character = 30
     def_character = 0
-    atk_character = 3
+    atk_character = 2
+    
+    if hp_character  <= 0:
+        game_over = True
     
     hp_rato = 5
     def_rato = 0
@@ -52,7 +84,7 @@ def main():
     pocao = 0
     gold_pouch = 0
     key = 0
-    inventario = []    
+    
     print("Na hora do sufoco!")
     print("------------------")
     print()
@@ -100,14 +132,12 @@ def main():
                         nome_cenario_atual = "biblioteca"
                     elif key == 0:
                         gold_pouch = gold_pouch + 10
-                        inventario.append(gold_pouch)
                         key = key + 1
-                        inventario.append(key)
                         pocao = pocao + 1
-                        inventario.append(pocao)
-                        atk_character = 5
+                        del inventario["weapon"]
+                        inventario["weapon"] = "dagger"
                         print(" \n 10 gold coins foram adicionados à sua gold pouch, você recebeu uma chave, uma pocao e uma dagger \n ")
-                        print("Agora o seu inventário possui {0} gold(s) , {1} chave(s) e {2} poco(es) e uma dagger\n ".format(gold_pouch,key,pocao,weapon))
+                        print("Agora o seu inventário possui {0} gold(s) , {1} chave(s) e {2} poco(es) e uma dagger\n ".format(gold_pouch,key,pocao))
                         print("O seu atk damage atual é {0}".format(atk_character))
                 elif escolha == "usar pocao":
                     if pocao > 0:
@@ -203,6 +233,9 @@ def main():
                         print("Parabens, você ganhou 5 gold coins")
                         gold_pouch = gold_pouch + 5
                         print("Agora você tem {0} gold coins em seu inventario".format(gold_pouch))
+                        del inventario["armor"]
+                        inventario["armor"] = "studded armor"
+                        print(def_character)
                         print(cenario_atual['titulo'])
                         print(cenario_atual['descricao'])
                         print('-'*len(cenario_atual['titulo']))
@@ -231,8 +264,12 @@ def main():
                     opcoes = cenario_atual['opcoes']
                     print()
                     if hp_inseto <= 0:
-                        print("Parabens, você ganhou 5 gold coins e uma pocao")
+                        print("Parabens, você ganhou 5 gold coins, uma pocao e um wooden shield")
+                        del inventario["shield"]
+                        inventario["shield"] = "wooden shield"
+                        print(def_character)
                         gold_pouch = gold_pouch + 5
+                        pocao = pocao + 1
                         print("Você tem {0} gold coins em seu invetario".format(gold_pouch))
                 elif escolha == "lutar":
                     index = 0
@@ -262,11 +299,13 @@ def main():
                         contador = contador + 1
                     if hp_rato <= 0:
                         print("Parabens, você ganhou 5 gold coins e uma rapier")
-                        atk_character = 7
+                        del inventario["weapon"]
+                        inventario["weapon"] = "rapier"
                         print("O seu atk damage atual é {0}".format(atk_character))
                         gold_pouch = gold_pouch + 5
                         print("Você tem {0} gold coins em seu inventario".format(gold_pouch))
                         contador = contador + 1
+                    
                     elif escolha == "usar pocao":
                         if pocao > 0:
                             pocao = pocao - 1
